@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazenda Filomena | Sistema Oficial de Vendas</title>
+<style>
+:root{
+  --verde:#1B5E20; --verde-claro:#4CAF50; --laranja:#FF6F00; --terra:#6D4C41; 
+  --bege:#FFFDE7; --cinza:#37474F; --branco:#FFFFFF; --vermelho:#D32F2F;
+  --azul:#1976D2; --sombra:0 4px 20px rgba(0,0,0,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Roboto,system-ui,sans-serif}
+body{background:var(--bege);color:var(--cinza);line-height:1.6}
+.hidden{display:none !important}
+.container{max-width:1300px;margin:0 auto;padding:0 20px}
+img{max-width:100%;height:auto}
+
+/* BARRA PROCESSAMENTO */
+.progress-bar{position:fixed;top:0;left:0;width:100%;height:4px;background:var(--laranja);z-index:9999;transform-origin:left;transform:scaleX(0);transition:transform 0.3s}
+.progress-bar.active{animation:loading 1.5s ease-in-out}
+@keyframes loading{0%{transform:scaleX(0)}50%{transform:scaleX(0.7)}100%{transform:scaleX(1)}}
+
+/* CABEÇALHO */
+header{background:var(--verde);color:var(--branco);box-shadow:var(--sombra);position:sticky;top:0;z-index:1000}
+.header-top{background:var(--cinza);padding:8px 0;font-size:13px}
+.header-top .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.header-main{padding:12px 0}
+.nav-wrapper{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.logo{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:700}
+.logo-img{width:45px;height:45px;border-radius:50%;object-fit:cover;border:2px solid var(--laranja)}
+nav ul{display:flex;gap:10px;list-style:none;flex-wrap:wrap}
+nav a{color:var(--branco);text-decoration:none;font-weight:500;transition:.3s;font-size:14px;padding:8px 12px;border-radius:6px}
+nav a:hover,nav a.active{background:rgba(255,255,255,0.15)}
+.btn{padding:10px 18px;border:none;border-radius:8px;cursor:pointer;font-weight:600;transition:.3s;font-size:14px;display:inline-block;text-decoration:none}
+.btn-primary{background:var(--laranja);color:var(--branco)}
+.btn-primary:hover{background:#E65100}
+.btn-success{background:var(--verde-claro);color:var(--branco)}
+.btn-danger{background:var(--vermelho);color:var(--branco)}
+.btn-warning{background:#FB8C00;color:var(--branco)}
+.btn-outline{border:2px solid var(--branco);background:transparent;color:var(--branco)}
+.btn-outline:hover{background:var(--branco);color:var(--verde)}
+.btn-sm{padding:6px 12px;font-size:12px}
+.user-info{display:flex;align-items:center;gap:10px}
+.user-avatar{width:35px;height:35px;border-radius:50%;object-fit:cover;border:2px solid var(--laranja)}
+
+/* CAPA */
+.cover-section{height:400px;background:url('photo22123909026085439.jpeg') center/cover;position:relative;display:flex;align-items:end}
+.cover-overlay{background:linear-gradient(transparent,rgba(0,0,0,0.7));width:100%;padding:40px 0;color:var(--branco)}
+.cover-section h1{font-size:42px;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,0.5)}
+
+/* CORPO */
+main{min-height:60vh;padding:40px 0}
+.page-title{background:var(--verde);color:var(--branco);padding:25px 0;margin-bottom:30px}
+.page-title h1{font-size:32px}
+.card{background:var(--branco);border-radius:16px;padding:25px;box-shadow:var(--sombra);margin-bottom:20px}
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:2px solid #f0f0}
+.card-header h2{color:var(--verde);font-size:24px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:25px}
+.product-card{border:3px solid #f0f0f0;transition:.3s}
+.product-card:hover{border-color:var(--verde);transform:translateY(-5px)}
+.product-img{width:100%;height:200px;object-fit:cover;border-radius:12px;margin-bottom:15px}
+.product-price{font-size:28px;color:var(--laranja);font-weight:700;margin:10px 0}
+
+/* FORMULÁRIOS */
+.form-group{margin-bottom:18px}
+label{display:block;margin-bottom:6px;font-weight:600;color:var(--verde);font-size:14px}
+input,select,textarea{width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px;font-size:15px;transition:.3s}
+input:focus,select:focus,textarea:focus{border-color:var(--verde-claro);outline:none}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.input-file{display:none}
+.file-label{display:inline-block;padding:10px 18px;background:var(--azul);color:var(--branco);border-radius:8px;cursor:pointer;font-size:14px}
+
+/* TABELAS */
+table{width:100%;border-collapse:collapse;margin:20px 0;background:var(--branco);border-radius:12px;overflow:hidden;font-size:14px}
+th{background:var(--verde);color:var(--branco);padding:14px;text-align:left;font-weight:600}
+td{padding:12px 14px;border-bottom:1px solid #f0f0f0}
+tr:hover{background:#f9f9f9}
+.badge{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;display:inline-block}
+.badge-submetido{background:#FFF3E0;color:#E65100}
+.badge-aprovado{background:#E8F5E9;color:#2E7D32}
+.badge-rejeitado{background:#FFEBEE;color:#C62828}
+.badge-devolvido{background:#F3E5F5;color:#7B1FA2}
+.badge-pago{background:#E3F2FD;color:#1565C0}
+
+/* PAINEL ADMIN */
+.admin-layout{display:grid;grid-template-columns:260px 1fr;gap:25px}
+.sidebar{background:var(--cinza);color:var(--branco);border-radius:16px;padding:20px;height:fit-content;position:sticky;top:100px}
+.sidebar ul{list-style:none}
+.sidebar li{margin-bottom:8px}
+.sidebar a{display:block;padding:12px 15px;border-radius:8px;color:var(--branco);text-decoration:none;cursor:pointer;transition:.3s;font-size:14px}
+.sidebar a:hover,.sidebar a.active{background:var(--verde)}
+.dashboard-content{background:var(--branco);border-radius:16px;padding:30px;box-shadow:var(--sombra)}
+
+/* CHAT */
+.chat-layout{display:grid;grid-template-columns:300px 1fr;gap:20px;height:600px}
+.chat-users{background:var(--branco);border-radius:12px;padding:15px;overflow-y:auto}
+.chat-user{display:flex;align-items:center;gap:12px;padding:12px;border-radius:8px;cursor:pointer;margin-bottom:8px;transition:.3s}
+.chat-user:hover,.chat-user.active{background:#f5f5}
+.chat-user img{width:45px;height:45px;border-radius:50%;object-fit:cover}
+.chat-container{background:var(--branco);border-radius:12px;display:flex;flex-direction:column}
+.chat-header{padding:15px;border-bottom:2px solid #f0f0f0;display:flex;align-items:center;gap:12px}
+.chat-header img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.chat-messages{flex:1;padding:20px;overflow-y:auto;background:#fafafa}
+.message{margin-bottom:15px;display:flex;gap:10px}
+.message.sent{flex-direction:row-reverse}
+.message img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.message-bubble{max-width:70%;padding:12px 16px;border-radius:16px;font-size:14px;word-wrap:break-word}
+.message.sent .message-bubble{background:var(--verde-claro);color:var(--branco)}
+.message.received .message-bubble{background:#e0e0e0}
+.message-file{margin-top:8px;padding:8px;background:rgba(0,0,0,0.1);border-radius:6px;font-size:12px}
+.chat-input{padding:15px;border-top:2px solid #f0f0f0;display:flex;gap:10px}
+.chat-input input{flex:1}
+
+/* MODAL */
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px}
+.modal-content{background:var(--branco);border-radius:16px;padding:30px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.close-modal{font-size:28px;cursor:pointer;color:#999}
+
+/* RODAPÉ */
+footer{background:var(--cinza);color:var(--branco);margin-top:60px}
+.footer-main{padding:50px 0}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px}
+.footer-bottom{background:#263238;padding:15px 0;text-align:center;font-size:14px}
+
+/* INFO BOX */
+.info-box{background:#E3F2FD;border-left:4px solid var(--azul);padding:15px;border-radius:8px;margin:15px 0}
+.info-box h4{color:var(--azul);margin-bottom:8px}
+.total-box{background:linear-gradient(135deg,var(--bege) 0%,#FFF9C4 100%);padding:25px;border-radius:12px;margin-top:20px;border:3px dashed var(--verde)}
+.total-box h3{color:var(--verde);font-size:28px;margin-bottom:10px}
+
+/* RESPONSIVO */
+@media(max-width:968px){
+  .admin-layout,.chat-layout{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  nav ul{gap:8px}
+  .cover-section{height:300px}
+  .cover-section h1{font-size:28px}
+  .chat-layout{height:auto}
+  .chat-users{max-height:200px}
+}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+
+<header>
+  <div class="header-top">
+    <div class="container">
+      <div>📍 Sede: Rua da Burgalheira, Bairro Panguila, Bengo - Angola</div>
+      <div>📞 Call Center | WhatsApp: 975 425 542 | 📧 fazenda.filomena@empresa.ao</div>
+    </div>
+  </div>
+  <div class="header-main">
+    <div class="container nav-wrapper">
+      <div class="logo">
+        <img src="photo8383962120950761595.jpeg" alt="Logo" class="logo-img">
+        <span>Fazenda Filomena</span>
+      </div>
+      <nav>
+        <ul id="menuNav">
+          <li><a href="#" onclick="mostrarPagina('inicio')" class="active">Início</a></li>
+          <li><a href="#" onclick="mostrarPagina('sobre')">Sobre</a></li>
+          <li><a href="#" onclick="mostrarPagina('servicos')">Serviços</a></li>
+          <li><a href="#" onclick="mostrarPagina('taxas')">Taxas</a></li>
+          <li><a href="#" onclick="mostrarPagina('legislacao')">Legislação</a></li>
+          <li><a href="#" onclick="mostrarPagina('comunicacao')">Comunicação</a></li>
+          <li><a href="#" onclick="mostrarPagina('auditoria')">Auditoria</a></li>
+          <li><a href="#" onclick="mostrarPagina('imprensa')">Imprensa</a></li>
+          <li id="linkPedido" class="hidden"><a href="#" onclick="mostrarPagina('pedido')">Fazer Pedido</a></li>
+          <li id="linkPerfil" class="hidden"><a href="#" onclick="mostrarPagina('perfil')">Meu Perfil</a></li>
+          <li id="linkAdmin" class="hidden"><a href="#" onclick="mostrarPagina('admin')">Painel Admin</a></li>
+        </ul>
+      </nav>
+      <div id="botoesAuth">
+        <button class="btn btn-outline" onclick="abrirModal('login')">Fazer Login</button>
+        <button class="btn btn-primary" onclick="abrirModal('cadastro')">Criar Conta</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- INÍCIO -->
+<section id="inicio" class="pagina">
+  <div class="cover-section">
+    <div class="cover-overlay">
+      <div class="container">
+        <h1>Produção 100% Natural, 100% Nacional</h1>
+        <p style="font-size:18px">Desde 2016 fornecendo ovos frescos e ração de qualidade para toda Angola</p>
+        <button class="btn btn-primary" onclick="abrirModal('login')" style="margin-top:15px">Começar a Comprar</button>
+      </div>
+    </div>
+  </div>
+  
+  <main>
+    <div class="container">
+      <div class="card">
+        <div class="card-header"><h2>🏭 Sobre a Fazenda Filomena</h2></div>
+        <div class="grid-2">
+          <div>
+            <p><strong>Fundação:</strong> 2016 em Panguila, Bengo</p>
+            <p><strong>Atividade Principal:</strong> Produção avícola - ovos, frango de corte, ração animal</p>
+            <p><strong>Capacidade:</strong> 16 aviários, 880 mil ovos/dia, 500 toneladas ração/dia</p>
+            <p><strong>Colaboradores:</strong> ~1.000 funcionários</p>
+            <p><strong>Participação:</strong> 25% dos ovos consumidos em Angola</p>
+            <p><strong>Marcas:</strong> Dona Filomena, Frangos da Banda, Ovos Marans</p>
+            <p><strong>Qualidade:</strong> 100% Biológico | Sem OGM | Aves ao ar livre</p>
+            <p><strong>Matadouro:</strong> 240.000 aves/ciclo de 45 dias</p>
+            <p><strong>Importação:</strong> 1.2 milhão de frangos da Europa/ano</p>
+          </div>
+          <div>
+            <img src="photo8383962120950761595.jpeg" alt="Caixas de Ovos" style="border-radius:12px">
+          </div>
+        </div>
+      </div>
+
+      <h2 style="margin:40px 0 20px;color:var(--verde)">🛒 Nossos Produtos</h2>
+      <div class="grid-3">
+        <div class="card product-card">
+          <img src="photo8383962120950761595.jpeg" alt="Ovos" class="product-img">
+          <h3>🥚 Caixa de Ovos</h3>
+          <p>12 cartões x 30 ovos = 360 ovos premium</p>
+          <div class="product-price">20.000 Kz</div>
+          <button class="btn btn-success" onclick="abrirModal('login')">Comprar</button>
+        </div>
+        <div class="card product-card">
+          <img src="photo22123909026085439.jpeg" alt="Ração" class="product-img">
+          <h3>🌾 Ração de Galinhas</h3>
+          <p>Saco 50KG - Nutrição balanceada</p>
+          <div class="product-price">5.000 Kz</div>
+          <button class="btn btn-success" onclick="abrirModal('login')">Comprar</button>
+        </div>
+        <div class="card product-card">
+          <img src="photo22123909026085439.jpeg" alt="Ração Pintos" class="product-img">
+          <h3>🐤 Ração de Pintos</h3>
+          <p>Saco especial fase inicial</p>
+          <div class="product-price">3.000 Kz</div>
+          <button class="btn btn-success" onclick="abrirModal('login')">Comprar</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:40px">
+        <h2>🚚 Entrega em Todo País</h2>
+        <p>Serviço de entrega domicílio em todas províncias, municípios e comunas de Angola.</p>
+        <p><strong>Opções:</strong> 1) Levantar na fábrica em Panguila, Bengo | 2) Receber em sua propriedade</p>
+        <p><strong>Horário:</strong> Segunda-Sexta: 08:00-17:00 | Sábado: 08:00-12:00</p>
+        <p><strong>Prazo:</strong> 2-7 dias úteis dependendo da localização</p>
+      </div>
+    </div>
+  </main>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="pagina hidden">
+  <div class="page-title"><div class="container"><h1>Sobre Nós</h1></div></div>
+  <main><div class="container">
+    <div class="card">
+      <h2>História da Fazenda Filomena</h2>
+      <p>A Fazenda Filomena foi fundada em 2016 em Panguila, Angola, como empresa agrícola dedicada à criação de aves de capoeira, produção de ovos, rações para animais e fertilizante orgânico.</p>
+      <p>Com 16 aviários, centro de recolha de ovos, duas estações de tratamento de água, laboratório e fábrica de ração, afirmamos-nos como um dos principais produtores de ovos frescos do país.</p>
+      <h3>Infraestrutura Completa</h3>
+      <ul>
+        <li>16 Aviários modernos com sistema automatizado de alimentação e climatização</li>
+        <li>Centro de recolha automatizado de ovos com capacidade 880 mil ovos/dia</li>
+        <li>Fábrica de ração: 500 toneladas/dia - consumo próprio e mercado local</li>
+        <li>Matadouro com capacidade 240.000 aves/ciclo de 45 dias</li>
+        <li>Produção de fertilizante orgânico a partir de resíduos avícolas</li>
+        <li>1.2 milhão de frangos importados da Europa/ano</li>
+        <li>2 Estações de tratamento de água</li>
+        <li>Laboratório de controle de qualidade e análises veterinárias</li>
+        <li>Sistema de rastreabilidade completo</li>
+      </ul>
+      <h3>Compromisso com Qualidade</h3>
+      <p><strong>100% BIOLÓGICO. ISENTO DE OGM. AVES CRIADAS AO AR LIVRE.</strong></p>
+      <p>Toda produção é biológica e livre de organismos geneticamente modificados, garantindo alimentação saudável para famílias angolanas. Não utilizamos antibióticos preventivos nem hormônios de crescimento.</p>
+      <p><strong>Equipa:</strong> ~1.000 colaboradores especializados em produção avícola, veterinária e gestão.</p>
+      <p><strong>Certificações:</strong> Produto Biológico, Bem-Estar Animal, HACCP, ISO 22000</p>
+    </div>
+  </div></main>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos" class="pagina hidden">
+  <div class="page-title"><div class="container"><h1>Serviços</h1></div></div>
+  <main><div class="container">
+    <div class="grid-2">
+      <div class="card">
+        <h3>🥚 Venda de Ovos</h3>
+        <p>Caixas com 12 cartões, 30 ovos cada. Qualidade premium e linha gourmet Ovos Marans de linhagem exclusiva.</p>
+        <p><strong>Capacidade:</strong> 880.000 ovos/dia</p>
+        <p><strong>Tipos:</strong> Premium, Marans Gourmet</p>
+      </div>
+      <div class="card">
+        <h3>🌾 Fábrica de Ração</h3>
+        <p>Produção 500 ton/dia. Ração para galinhas poedeiras e pintos. Distribuição mercado local e consumo próprio.</p>
+        <p><strong>Fórmula:</strong> Balanceada e 100% natural</p>
+        <p><strong>Sem:</strong> OGM, antibióticos, hormônios</p>
+      </div>
+      <div class="card">
+        <h3>🐔 Frango de Corte</h3>
+        <p>Marca "Frangos da Banda". Cortes: peito, coxas, asas. Venda grossista e retalhista.</p>
+        <p><strong>Ciclo:</strong> 240.000 aves a cada 45 dias</p>
+        <p><strong>Meta:</strong> 1.9 milhão frangos/ano</p>
+      </div>
+      <div class="card">
+        <h3>🚚 Logística Nacional</h3>
+        <p>Entrega em todas províncias. Frota própria refrigerada. Agendamento de data/hora. Rastreamento de pedidos.</p>
+        <p><strong>Cobertura:</strong> 18 províncias de Angola</p>
+        <p><strong>Prazo:</strong> 2-7 dias úteis</p>
+      </div>
+      <div class="card">
+        <h3>🌱 Fertilizante Orgânico</h3>
+        <p>Produzido a partir de resíduos avícolas. 100% natural para agricultura sustentável.</p>
+        <p><strong>Benefícios:</strong> Melhora solo, retenção água</p>
+      </div>
+      <div class="card">
+        <h3>🔬 Consultoria Técnica</h3>
+        <p>Apoio a produtores locais. Formação em avicultura. Assistência veterinária especializada.</p>
+        <p><strong>Serviços:</strong> Treinamento, visitas técnicas</p>
+      </div>
+    </div>
+  </div></main>
+</section>
+
+<!-- TAXAS -->
+<section id="taxas" class="pagina hidden">
+  <div class="page-title"><div class="container"><h1>Taxas e Preços</h1></div></div>
+  <main><div class="container">
+    <div class="card">
+      <h2>Tabela de Preços Oficial 2026</h2>
+      <table>
+        <thead><tr><th>Produto</th><th>Unidade</th><th>Preço (Kz)</th><th>Observação</th></tr></thead>
+        <tbody>
+          <tr><td>🥚 Caixa de Ovos Premium</td><td>12 cartões (360 ovos)</td><td><strong>20.000</strong></td><td>Qualidade Superior</td></tr>
+          <tr><td>🥚 Ovos Marans Gourmet</td><td>12 cartões (360 ovos)</td><td><strong>28.000</strong></td><td>Linhagem Exclusiva</td></tr>
+          <tr><td>🌾 Ração Galinhas</td><td>Saco 50KG</td><td><strong>5.000</strong></td><td>Poedeiras</td></tr>
+          <tr><td>🐤 Ração Pintos</td><td>Saco 25KG</td><td><strong>3.000</strong></td><td>Fase Inicial</td></tr>
+          <tr><td>🐔 Frango Inteiro</td><td>Unidade ~1.5kg</td><td><strong>2.500</strong></td><td>Frangos da Banda</td></tr>
+          <tr><td>🌱 Fertilizante Orgânico</td><td>Saco 25KG</td><td><strong>1.500</strong></td><td>100% Natural</td></tr>
+        </tbody>
+      </table>
+      <div class="info-box">
+        <h4>💰 Forma de Pagamento</h4>
+        <p><strong>Multicaixa Express / ATM:</strong></p>
+        <p>Entidade: <strong>00525</strong> | Referência: <strong>942 714 052</strong></p>
+        <p>Pagamentos > Pagamentos por referência > Inserir dados > Confirmar</p>
+      </div>
+      <div class="info-box">
+        <h4>🚚 Taxa de Entrega</h4>
+        <p><strong>Luanda e Bengo:</strong> Grátis para pedidos acima 100.000 Kz</p>
+        <p><strong>Outras províncias:</strong> Sob consulta conforme distância e peso</p>
+        <p><strong>Levantar na fábrica:</strong> Sem custo adicional</p>
+        <p><strong>Prazo:</strong> 2-7 dias úteis dependendo da localização</p>
+      </div>
+      <div class="info-box">
+        <h4>🎁 Descontos por Volume</h4>
+        <p>10+ caixas: 5% desconto | 50+ caixas: 10% desconto | 100+ caixas: 15% desconto</p>
+        <p>Clientes empresariais: Condições especiais sob consulta</p>
+      </div>
+    </div>
+  </div></main>
+</section>
+
+<!-- LEGISLAÇÃO -->
+<section id="legislacao" class="pagina hidden">
+  <div class="page-title"><div class="container"><h1>Legislação e Certificações</h1></div></div>
+  <main><div class="container">
+    <div class="card">
+      <h2>Conformidade Legal</h2>
+      <p>A Fazenda Filomena opera em total conformidade com a legislação angolana do sector agroindustrial e normas internacionais.</p>
+      <h3>Certificações Ativas</h3>
+      <ul>
+        <li>✅ Licença de Exploração Avícola - Ministério da Agricultura nº 2016/AV/0342</li>
+        <li>✅ Certificado Sanitário Veterinário - Instituto dos Serviços de Veterinária</li>
+        <li>✅ Licença Ambiental - Ministério do Ambiente</li>
+        <li>✅ Certificação Produto Biológico - Organismo Certificador Nacional</li>
+        <li>✅ Registo Comercial: Empresa Angolana NIF 5417238490</li>
+        <li>✅ Alvará Sanitário - Atualizado 2026</li>
+        <li>✅ Certificado de Bem-Estar Animal - WAP Angola</li>
+        <li>✅ Certificação HACCP - Segurança Alimentar</li>
+        <li>✅ ISO 22000 - Gestão Segurança Alimentar</li>
+      </ul>
+      <h3>Normas de Qualidade</h3>
+      <p>Seguimos padrões internacionais de bem-estar animal, segurança alimentar (HACCP) e rastreabilidade completa da cadeia produtiva.</p>
+      <p>Todos os produtos são isentos de OGM, antibióticos preventivos e hormônios de crescimento.</p>
+      <p><strong>Auditorias:</strong> Trimestrais por entidades independentes certificadas</p>
+    </div>
+  </div></main>
+</section>
+
+<!-- COMUNICAÇÃO -->
+<section id="comunicacao" class="pagina hidden">
+  <div class="page-title"><div class="container"><h1>Comunicação</h1></div></div>
+  <main><div class="container">
+    <div class="grid-2">
+      <div class="card">
+        <h2>Canais Oficiais de Atendimento</h2>
+        <p><strong>📞 Call Center:</strong> 975 425 542 / 937 060 606</p>
+        <p><strong>💬 WhatsApp:</strong> 975 425 542 (Seg-Sáb)</p>
+        <p><strong>📧 Email Comercial:</strong> comercial@fazendafilomena.co.ao</p>
+        <p><strong>📧 Email Imprensa:</strong> imprensa@fazendafilomena.co.ao</p>
+        <p><strong>📧 Email Geral:</strong> info@fazendafilomena.co.ao</p>
+        <p><strong>📍 Endereço:</strong> Rua da Burgalheira, Bairro Panguila, Província Bengo - Angola</p>
+        <h3>Horário de Atendimento</h3>
+        <p>Segunda a Sexta: 08:00 - 17:00</p>
+        <p>Sábado: 08:00 - 12:00</p>
+        <p>Domingo: Fechado</p>
+      </div>
+      <div class="card">
+        <h2>Redes Sociais</h2>
+        <p><strong>📱 Instagram:</strong> @fazenda_filomena</p>
+        <p><strong>📘 Facebook:</strong> /FazendaFilomenaAO</p>
+        <p><strong>🐦 Twitter/X:</strong> @FazendaFilomena</p>
+        <p><strong>💼 LinkedIn:</strong> Fazenda Filomena Angola</p>
+        <p><strong>📺 YouTube:</strong> Fazenda Filomena Oficial</p>
+        <h3>Comunicados Oficiais</h3>
+        <div class="info-box">
+          <h4>Maio 2026</h4>
+          <p>Lançamento de nova linha Ovos Marans Gourmet. Disponível para encomendas.</p>
+        </div>
+        <div class="info-box">
+          <h4>Abril 2026</h4>
+          <p>Expansão da fábrica de ração. Capacidade aumentada para 500 ton/dia.</p>
+        </div>
+      </div>
+    </div>
+  </div></main>
+</section>
+
+<!-- AUDITORIA -->
+<section id="auditoria" class="pagina hidden">
+  <div class="page-title"><div class="container"><h1>Auditoria e Transparência</h1></div></div>
+  <main><div class="container">
+    <div class="card">
+      <h2>Relatórios de Auditoria</h2>
+      <p>Comprometemo-nos com transparência total nas operações. Todas auditorias são realizadas por entidades independentes certificadas.</p>
+      <h3>Auditorias Realizadas 2025-2026</h3>
+      <table>
+        <thead><tr><th>Tipo de Auditoria</th><th>Data</th><th>Resultado</th><th>Entidade</th></tr></thead>
+        <tbody>
+          <tr><td>Auditoria Sanitária</td><td>Março 2026</td><td><span class="badge badge-aprovado">Aprovado</span></td><td>ISV</td></tr>
+          <tr><td>Auditoria Ambiental</td><td>Fevereiro 2026</td><td><span class="badge badge-aprovado">Conforme</span></td><td>Ministério Ambiente</td></tr>
+          <tr><td>Auditoria Financeira</td><td>Janeiro 2026</td><td><span class="badge badge-aprovado">Sem Ressalvas</span></td><td>Deloitte Angola</td></tr>
+          <tr><td>Bem-Estar Animal</td><td>Dezembro 2025</td><td><span class="badge badge-aprovado">Certificado</span></td><td>WAP Angola</td></tr>
+          <tr><td>Segurança Alimentar HACCP</td><td>Novembro 2025</td><td><span class="badge badge-aprovado">Aprovado</span></td><td>SGS</td></tr>
+          <tr><td>ISO 22000</td><td>Outubro 2025</td><td><span class="badge badge-aprovado">Certificado</span></td><td>Bureau Veritas</td></tr>
+        </tbody>
+      </table>
+      <h3>Indicadores de Qualidade 2025</h3>
+      <ul>
+        <li>Taxa de Mortalidade Aves: < 2% (Padrão internacional: < 5%)</li>
+        <li>Qualidade da Água: 100% Potável (Análises mensais)</li>
+        <li>Rastreabilidade: 100% dos lotes rastreáveis</li>
+        <li>Satisfação Cliente: 94% (Pesquisa 2025)</li>
+        <li>Conformidade Sanitária: 100%</li>
+        <li>Acidentes Trabalho: 0 (Zero) em 2025</li>
+      </ul>
+      <p><strong>Relatórios completos disponíveis mediante solicitação formal para:</strong> auditoria@fazendafilomena.co.ao</p>
+    </div>
+  </div></main>
+</section>
+
+<!-- IMPRENSA -->
+<section id="imprensa" class="pagina hidden">
+  <div class="page-title"><div class="container"><h1>Imprensa</h1></div></div>
+  <main><div class="container">
+    <div class="grid-2">
+      <div class="card">
+        <h2>Material para Imprensa</h2>
+                <p><strong>Press Kit Disponível:</strong></p>
+        <ul>
+          <li>Logotipos em alta resolução (PNG, SVG, AI)</li>
+          <li>Fotos institucionais e de produtos</li>
+          <li>Fact Sheet 2026 (PDF)</li>
+          <li>Vídeo institucional</li>
+          <li>Biografias da direção</li>
+        </ul>
+        <button class="btn btn-primary" onclick="alert('Download do Press Kit iniciado')">⬇️ Baixar Press Kit Completo</button>
+        <h3 style="margin-top:20px">Contato Imprensa</h3>
+        <p><strong>Email:</strong> imprensa@fazendafilomena.co.ao</p>
+        <p><strong>Telefone:</strong> 937 060 606</p>
+        <p><strong>Responsável:</strong> Departamento de Comunicação</p>
+      </div>
+      <div class="card">
+        <h2>Últimas Notícias</h2>
+        <div class="info-box">
+          <h4>29 Maio 2025</h4>
+          <p><strong>Inauguração Nova Unidade de Processamento</strong></p>
+          <p>Fazenda Filomena inaugura nova unidade com capacidade para 1.9 milhão de frangos/ano. Marca "Frangos da Banda" lançada para mercado nacional com cortes premium.</p>
+        </div>
+        <div class="info-box">
+          <h4>15 Abril 2025</h4>
+          <p><strong>Expansão Fábrica de Ração</strong></p>
+          <p>Investimento de 500 milhões Kz aumenta capacidade para 500 toneladas/dia. Ração 100% nacional.</p>
+        </div>
+        <div class="info-box">
+          <h4>10 Março 2025</h4>
+          <p><strong>Certificação Produto Biológico</strong></p>
+          <p>Fazenda Filomena recebe certificação de produto 100% biológico. Primeira avícola angolana com selo.</p>
+        </div>
+        <div class="info-box">
+          <h4>05 Janeiro 2025</h4>
+          <p><strong>Meta 2026: 1 Milhão de Ovos/Dia</strong></p>
+          <p>Plano de expansão prevê aumento de 15% na produção para atingir 1 milhão de ovos diários.</p>
+        </div>
+      </div>
+    </div>
+  </div></main>
+</section>
+
+<!-- FORMULÁRIO PEDIDO -->
+<section id="pedido" class="pagina hidden">
+  <div class="page-title"><div class="container"><h1>📝 Fazer Pedido de Compra</h1></div></div>
+  <main><div class="container">
+    <div class="card">
+      <div class="card-header"><h2>Formulário de Compra</h2></div>
+      
+      <h3>1. Tipo de Compra</h3>
+      <div class="form-group">
+        <select id="tipoCompra">
+          <option value="Particular">Particular - Consumo Próprio</option>
+          <option value="Empresarial">Empresarial - Revenda/Distribuição</option>
+        </select>
+      </div>
+
+      <h3>2. Selecione os Produtos e Quantidades</h3>
+      <div class="grid-3">
+        <div class="form-group">
+          <label>🥚 Caixa de Ovos - 20.000 Kz</label>
+          <input type="number" id="qtdOvos" min="0" value="0" onchange="calcularTotal()">
+          <small>1 caixa = 12 cartões = 360 ovos</small>
+        </div>
+        <div class="form-group">
+          <label>🌾 Ração Galinhas 50KG - 5.000 Kz</label>
+          <input type="number" id="qtdRacaoGalinhas" min="0" value="0" onchange="calcularTotal()">
+        </div>
+        <div class="form-group">
+          <label>🐤 Ração Pintos - 3.000 Kz</label>
+          <input type="number" id="qtdRacaoPintos" min="0" value="0" onchange="calcularTotal()">
+        </div>
+      </div>
+
+      <h3>3. Forma de Recebimento</h3>
+      <div class="form-group">
+        <select id="formaEntrega" onchange="toggleEndereco()">
+          <option value="Levantar na Fábrica">Levantar na Fábrica - Panguila, Bengo (Grátis)</option>
+          <option value="Entrega Domicílio">Entrega Domicílio - Sua Propriedade</option>
+        </select>
+      </div>
+
+      <div id="camposEndereco" class="hidden">
+        <h3>4. Endereço de Entrega Completo</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Província *</label>
+            <select id="provincia">
+              <option value="">Selecione...</option>
+              <option>Bengo</option><option>Luanda</option><option>Benguela</option>
+              <option>Huíla</option><option>Huambo</option><option>Bié</option>
+              <option>Cabinda</option><option>Cuanza Norte</option><option>Cuanza Sul</option>
+              <option>Cunene</option><option>Cuando Cubango</option><option>Lunda Norte</option>
+              <option>Lunda Sul</option><option>Malanje</option><option>Moxico</option>
+              <option>Namibe</option><option>Uíge</option><option>Zaire</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Município *</label>
+            <input type="text" id="municipio" placeholder="Ex: Viana, Dande">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Bairro/Comuna *</label>
+            <input type="text" id="bairro" placeholder="Ex: Zango, Panguila">
+          </div>
+          <div class="form-group">
+            <label>Ponto de Referência</label>
+            <input type="text" id="referencia" placeholder="Ex: Próximo à escola, mercado">
+          </div>
+        </div>
+      </div>
+
+      <div class="total-box">
+        <h3>Total a Pagar: <span id="totalPagar">0 Kz</span></h3>
+        <p id="resumoPedido" style="font-size:15px;margin-top:10px"></p>
+      </div>
+
+      <button class="btn btn-success" onclick="submeterPedido()" style="width:100%;margin-top:25px;padding:18px;font-size:17px">
+        ✅ Submeter Pedido de Compra
+      </button>
+    </div>
+  </div></main>
+</section>
+
+<!-- PERFIL CLIENTE -->
+<section id="perfil" class="pagina hidden">
+  <div class="page-title"><div class="container"><h1>Meu Perfil</h1></div></div>
+  <main><div class="container">
+    <div class="admin-layout">
+      <div class="sidebar">
+        <div style="text-align:center;margin-bottom:20px">
+          <img id="avatarPerfil" src="photo8383962120950761595.jpeg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--laranja);margin-bottom:10px">
+          <h4 id="nomePerfil"></h4>
+          <label for="uploadFoto" class="file-label" style="font-size:12px;padding:6px 12px">Alterar Foto</label>
+          <input type="file" id="uploadFoto" class="input-file" accept="image/*" onchange="alterarFotoPerfil(event)">
+        </div>
+        <ul>
+          <li><a class="active" onclick="mostrarAbaPerfil('pedidos')">📦 Meus Pedidos</a></li>
+          <li><a onclick="mostrarAbaPerfil('documentos')">📄 Meus Documentos</a></li>
+          <li><a onclick="mostrarAbaPerfil('chat')">💬 Chat com Vendedor</a></li>
+          <li><a onclick="mostrarAbaPerfil('dados')">👤 Meus Dados</a></li>
+          <li><a onclick="terminarSessao()">🚪 Terminar Sessão</a></li>
+        </ul>
+      </div>
+      <div class="dashboard-content">
+        <div id="aba-pedidos">
+          <div class="card-header"><h2>Meus Pedidos</h2></div>
+          <div id="listaPedidosCliente"></div>
+        </div>
+        <div id="aba-documentos" class="hidden">
+          <div class="card-header"><h2>Meus Documentos</h2></div>
+          <div id="listaDocsCliente"></div>
+        </div>
+        <div id="aba-chat" class="hidden">
+          <div class="card-header"><h2>Chat com Administrativo</h2></div>
+          <div class="chat-container">
+            <div class="chat-messages" id="chatCliente"></div>
+            <div class="chat-input">
+              <input type="text" id="msgCliente" placeholder="Digite sua mensagem...">
+              <label for="anexoChat" class="btn btn-outline btn-sm">📎 Anexo</label>
+              <input type="file" id="anexoChat" class="input-file" accept="image/*,.pdf" onchange="enviarAnexo('cliente',event)">
+              <button class="btn btn-primary btn-sm" onclick="enviarMsg('cliente')">Enviar</button>
+            </div>
+          </div>
+        </div>
+        <div id="aba-dados" class="hidden">
+          <div class="card-header"><h2>Meus Dados Pessoais</h2></div>
+          <div id="dadosUsuario"></div>
+        </div>
+      </div>
+    </div>
+  </div></main>
+</section>
+
+<!-- PAINEL ADMIN -->
+<section id="admin" class="pagina hidden">
+  <div class="page-title"><div class="container"><h1>⚙️ Painel Administrativo</h1></div></div>
+  <main><div class="container">
+    <div class="admin-layout">
+      <div class="sidebar">
+        <div style="text-align:center;margin-bottom:20px">
+          <img id="avatarAdmin" src="photo8383962120950761595.jpeg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--laranja);margin-bottom:10px">
+          <h4>Administrador</h4>
+          <label for="uploadFotoAdmin" class="file-label" style="font-size:12px;padding:6px 12px">Alterar Foto</label>
+          <input type="file" id="uploadFotoAdmin" class="input-file" accept="image/*" onchange="alterarFotoPerfil(event,'admin')">
+        </div>
+        <ul>
+          <li><a class="active" onclick="mostrarAbaAdmin('pedidos')">📋 Gestão de Pedidos</a></li>
+          <li><a onclick="mostrarAbaAdmin('chat')">💬 Chat com Clientes</a></li>
+          <li><a onclick="mostrarAbaAdmin('relatorios')">📊 Relatórios</a></li>
+          <li><a onclick="terminarSessao()">🚪 Terminar Sessão</a></li>
+        </ul>
+      </div>
+      <div class="dashboard-content">
+        <div id="admin-pedidos">
+          <div class="card-header">
+            <h2>Todos os Pedidos</h2>
+            <span id="totalPedidos" class="badge badge-aprovado">0 pedidos</span>
+          </div>
+          <table id="tabelaPedidos">
+            <thead>
+              <tr>
+                <th>ID</th><th>Cliente</th><th>Tipo</th><th>Total</th><th>Entrega</th><th>Status</th><th>Ações</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div id="admin-chat" class="hidden">
+          <div class="card-header"><h2>Chat com Clientes</h2></div>
+          <div class="chat-layout">
+            <div class="chat-users" id="listaChatUsers"></div>
+            <div class="chat-container">
+              <div class="chat-header" id="chatHeaderAdmin">
+                <img src="photo8383962120950761595.jpeg" alt="Cliente">
+                <div><strong id="nomeClienteChat">Selecione um cliente</strong><br><small id="emailClienteChat"></small></div>
+              </div>
+              <div class="chat-messages" id="chatAdmin"></div>
+              <div class="chat-input">
+                <input type="text" id="msgAdmin" placeholder="Responder cliente...">
+                <label for="anexoAdmin" class="btn btn-outline btn-sm">📎</label>
+                <input type="file" id="anexoAdmin" class="input-file" accept="image/*,.pdf" onchange="enviarAnexo('admin',event)">
+                <button class="btn btn-primary btn-sm" onclick="enviarMsg('admin')">Enviar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="admin-relatorios" class="hidden">
+          <div class="card-header"><h2>Relatórios de Vendas</h2></div>
+          <div class="grid-3" id="cardsRelatorio"></div>
+        </div>
+      </div>
+    </div>
+  </div></main>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div class="container footer-grid">
+      <div>
+        <h3>🥚 Fazenda Filomena</h3>
+        <p>Produção avícola 100% nacional desde 2016</p>
+        <p>25% dos ovos consumidos em Angola</p>
+        <p>16 aviários | 880 mil ovos/dia | 500 ton ração/dia</p>
+        <p>~1.000 colaboradores</p>
+      </div>
+      <div>
+        <h3>Contato Oficial</h3>
+        <p>📍 Rua da Burgalheira, Bairro Panguila, Bengo</p>
+        <p>📞 975 425 542 | 937 060 606</p>
+        <p>💬 WhatsApp: 975 425 542</p>
+        <p>📧 comercial@fazendafilomena.co.ao</p>
+        <p>⏰ Seg-Sex: 08:00-17:00 | Sáb: 08:00-12:00</p>
+      </div>
+      <div>
+        <h3>Produtos & Preços</h3>
+        <p>🥚 Caixa Ovos 360 unid - 20.000 Kz</p>
+        <p>🌾 Ração Galinhas 50KG - 5.000 Kz</p>
+        <p>🐤 Ração Pintos - 3.000 Kz</p>
+        <p>🚚 Entrega em todo país</p>
+        <p>📦 Desconto volume disponível</p>
+      </div>
+      <div>
+        <h3>Marcas & Certificações</h3>
+        <p>✓ Dona Filomena - Ovos Premium</p>
+        <p>✓ Frangos da Banda - Cortes</p>
+        <p>✓ Ovos Marans - Linha Gourmet</p>
+        <p>✓ 100% Biológico | Sem OGM</p>
+        <p>✓ HACCP | ISO 22000</p>
+        <p>✓ Bem-Estar Animal</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Fazenda Filomena. Todos os direitos reservados. | Produção 100% Nacional | CNPJ: 5417238490</p>
+  </div>
+</footer>
+
+<!-- MODAIS -->
+<div id="modalLogin" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Fazer Login</h2>
+      <span class="close-modal" onclick="fecharModal()">&times;</span>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="seu@email.com" value="admin@fazenda.com"></div>
+    <div class="form-group"><label>Senha</label><input type="password" id="loginSenha" placeholder="Sua senha" value="admin123"></div>
+    <button class="btn btn-primary" onclick="fazerLogin()" style="width:100%">Entrar</button>
+    <p style="margin-top:15px;font-size:13px;color:#666;text-align:center">Admin: admin@fazenda.com / admin123</p>
+  </div>
+</div>
+
+<div id="modalCadastro" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Criar Nova Conta</h2>
+      <span class="close-modal" onclick="fecharModal()">&times;</span>
+    </div>
+    <div class="form-group"><label>Nome Completo *</label><input type="text" id="cadNome" placeholder="João Silva"></div>
+    <div class="form-group"><label>Email *</label><input type="email" id="cadEmail" placeholder="joao@email.com"></div>
+    <div class="form-group"><label>Telefone *</label><input type="tel" id="cadTel" placeholder="9XX XXX XXX"></div>
+    <div class="form-group"><label>Tipo de Conta</label><select id="cadTipo"><option value="Particular">Particular</option><option value="Empresarial">Empresarial</option></select></div>
+    <div class="form-group"><label>Senha *</label><input type="password" id="cadSenha" placeholder="Mínimo 6 caracteres"></div>
+    <button class="btn btn-primary" onclick="criarConta()" style="width:100%">Cadastrar</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+// ESTADO GLOBAL
+let usuarioAtual = null;
+let pedidos = JSON.parse(localStorage.getItem('pedidosFF')||'[]');
+let mensagens = JSON.parse(localStorage.getItem('mensagensFF')||'[]');
+let usuarios = JSON.parse(localStorage.getItem('usuariosFF')||'{}');
+let chatAtual = null;
+const PREÇOS = {ovos:20000, racaoGalinhas:5000, racaoPintos:3000};
+
+// INICIALIZAÇÃO
+window.onload = function(){
+  mostrarProgresso();
+  if(!usuarios['admin@fazenda.com']){
+    usuarios['admin@fazenda.com']={nome:'Administrador',email:'admin@fazenda.com',tel:'975425542',senha:'admin123',tipo:'admin',foto:'photo8383962120950761595.jpeg'};
+    localStorage.setItem('usuariosFF',JSON.stringify(usuarios));
+  }
+  mostrarPagina('inicio');
+  calcularTotal();
+  setTimeout(()=>esconderProgresso(),500);
+}
+
+function mostrarProgresso(){document.getElementById('progressBar').classList.add('active')}
+function esconderProgresso(){document.getElementById('progressBar').classList.remove('active')}
+
+// NAVEGAÇÃO
+function mostrarPagina(id){
+  mostrarProgresso();
+  setTimeout(()=>{
+    document.querySelectorAll('.pagina').forEach(p=>p.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+    window.scrollTo(0,0);
+    if(id==='perfil'){carregarPedidosCliente();carregarDocumentosCliente();}
+    if(id==='admin'){carregarPedidosAdmin();carregarRelatorios();carregarListaChat();}
+    esconderProgresso();
+  },300);
+}
+
+// MODAIS
+function abrirModal(tipo){document.getElementById('modal'+tipo.charAt(0).toUpperCase()+tipo.slice(1)).classList.remove('hidden')}
+function fecharModal(){document.querySelectorAll('.modal').forEach(m=>m.classList.add('hidden'))}
+
+// AUTH
+function criarConta(){
+  if(!cadNome.value||!cadEmail.value||!cadSenha.value||!cadTel.value){alert('Preencha todos os campos obrigatórios');return}
+  if(usuarios[cadEmail.value]){alert('Email já cadastrado');return}
+  usuarios[cadEmail.value]={nome:cadNome.value,email:cadEmail.value,tel:cadTel.value,senha:cadSenha.value,tipo:cadTipo.value,foto:'photo8383962120950761595.jpeg'};
+  localStorage.setItem('usuariosFF',JSON.stringify(usuarios));
+  alert('✅ Conta criada com sucesso! Faça login.');fecharModal();
+}
+
+function fazerLogin(){
+  const user=usuarios[loginEmail.value];
+  if(user && user.senha===loginSenha.value){
+    usuarioAtual=user;
+    document.getElementById('botoesAuth').innerHTML=`
+      <div class="user-info">
+        <img src="${user.foto}" class="user-avatar" alt="${user.nome}">
+        <span>Olá, ${user.nome}</span>
+        <button class="btn btn-outline btn-sm" onclick="terminarSessao()">Terminar Sessão</button>
+      </div>`;
+    document.getElementById('linkPedido').classList.remove('hidden');
+    document.getElementById('linkPerfil').classList.remove('hidden');
+    if(user.tipo==='admin')document.getElementById('linkAdmin').classList.remove('hidden');
+    fecharModal();
+    mostrarPagina(user.tipo==='admin'?'admin':'pedido');
+  }else alert('❌ Email ou senha incorretos');
+}
+
+function terminarSessao(){
+  if(confirm('Deseja realmente terminar a sessão?')){
+    usuarioAtual=null;chatAtual=null;
+    location.reload();
+  }
+}
+
+// FOTO PERFIL
+function alterarFotoPerfil(event,tipo){
+  const file=event.target.files[0];
+  if(file){
+    const reader=new FileReader();
+    reader.onload=function(e){
+      const foto=e.target.result;
+      if(tipo==='admin'){
+        document.getElementById('avatarAdmin').src=foto;
+        usuarios['admin@fazenda.com'].foto=foto;
+      }else{
+        document.getElementById('avatarPerfil').src=foto;
+        usuarioAtual.foto=foto;
+        usuarios[usuarioAtual.email].foto=foto;
+        document.querySelector('.user-avatar').src=foto;
+      }
+      localStorage.setItem('usuariosFF',JSON.stringify(usuarios));
+      alert('✅ Foto atualizada!');
+    }
+    reader.readAsDataURL(file);
+  }
+}
+
+// PEDIDOS
+function toggleEndereco(){
+  document.getElementById('camposEndereco').classList.toggle('hidden',formaEntrega.value==='Levantar na Fábrica');
+}
+
+function calcularTotal(){
+  const q1=parseInt(qtdOvos.value)||0;
+  const q2=parseInt(qtdRacaoGalinhas.value)||0;
+  const q3=parseInt(qtdRacaoPintos.value)||0;
+  const total=(q1*PREÇOS.ovos)+(q2*PREÇOS.racaoGalinhas)+(q3*PREÇOS.racaoPintos);
+  document.getElementById('totalPagar').textContent=total.toLocaleString()+' Kz';
+  let resumo=[];
+  if(q1>0)resumo.push(`${q1}x Caixa Ovos`);
+  if(q2>0)resumo.push(`${q2}x Ração Galinhas`);
+  if(q3>0)resumo.push(`${q3}x Ração Pintos`);
+  document.getElementById('resumoPedido').textContent=resumo.join(' | ')||'Selecione produtos';
+}
+
+function submeterPedido(){
+  const q1=parseInt(qtdOvos.value)||0;
+  const q2=parseInt(qtdRacaoGalinhas.value)||0;
+  const q3=parseInt(qtdRacaoPintos.value)||0;
+  if(q1+q2+q3===0){alert('⚠️ Selecione pelo menos 1 produto');return}
+  if(formaEntrega.value==='Entrega Domicílio'&&(!provincia.value||!municipio.value||!bairro.value)){
+    alert('⚠️ Preencha o endereço completo para entrega');return
+  }
+  const itens=[];
+  if(q1>0)itens.push({produto:'Caixa de Ovos',qtd:q1,preco:PREÇOS.ovos,subtotal:q1*PREÇOS.ovos});
+  if(q2>0)itens.push({produto:'Ração Galinhas 50KG',qtd:q2,preco:PREÇOS.racaoGalinhas,subtotal:q2*PREÇOS.racaoGalinhas});
+  if(q3>0)itens.push({produto:'Ração Pintos',qtd:q3,preco:PREÇOS.racaoPintos,subtotal:q3*PREÇOS.racaoPintos});
+  
+  const pedido={
+    id:Date.now(),
+    cliente:usuarioAtual.nome,
+    email:usuarioAtual.email,
+    telefone:usuarioAtual.tel,
+    tipoCompra:tipoCompra.value,
+    itens:itens,
+    total:itens.reduce((s,i)=>s+i.subtotal,0),
+    formaEntrega:formaEntrega.value,
+    endereco:formaEntrega.value==='Entrega Domicílio'?{provincia:provincia.value,municipio:municipio.value,bairro:bairro.value,referencia:referencia.value}:null,
+    status:'Submetido',
+    data:new Date().toLocaleString('pt-AO')
+  };
+  pedidos.push(pedido);
+  localStorage.setItem('pedidosFF',JSON.stringify(pedidos));
+  gerarPDF('submissao',pedido);
+  alert('✅ Pedido #'+pedido.id+' submetido! Recibo de Submissão foi gerado. Aguarde aprovação do administrativo.');
+  qtdOvos.value=qtdRacaoGalinhas.value=qtdRacaoPintos.value=0;
+  calcularTotal();
+  mostrarPagina('perfil');
+}
+
+// ADMIN - PEDIDOS
+function carregarPedidosAdmin(){
+  document.getElementById('totalPedidos').textContent=pedidos.length+' pedidos';
+  const tbody=document.querySelector('#tabelaPedidos tbody');
+  tbody.innerHTML=pedidos.map(p=>`
+    <tr>
+      <td><strong>#${p.id}</strong><br><small>${p.data}</small></td>
+      <td>${p.cliente}<br><small>${p.telefone}</small></td>
+      <td>${p.tipoCompra}</td>
+      <td><strong>${p.total.toLocaleString()} Kz</strong></td>
+      <td>${p.formaEntrega}${p.endereco?`<br><small>${p.endereco.provincia}</small>`:''}</td>
+      <td><span class="badge badge-${p.status.toLowerCase()}">${p.status}</span></td>
+      <td>
+        ${p.status==='Submetido'?`
+          <button class="btn btn-success btn-sm" onclick="atualizarStatus(${p.id},'Aprovado')">✓ Aprovar</button>
+          <button class="btn btn-danger btn-sm" onclick="atualizarStatus(${p.id},'Rejeitado')">✗ Rejeitar</button>
+          <button class="btn btn-warning btn-sm" onclick="atualizarStatus(${p.id},'Devolvido')">↶ Devolver</button>
+        `:''}
+        ${p.status==='Aprovado'?`<button class="btn btn-primary btn-sm" onclick="confirmarPagamento(${p.id})">💰 Confirmar Pagamento</button>`:''}
+        <button class="btn btn-outline btn-sm" onclick="verDetalhes(${p.id})">👁️ Ver</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function atualizarStatus(id,status){
+  const p=pedidos.find(p=>p.id===id);
+  p.status=status;
+  localStorage.setItem('pedidosFF',JSON.stringify(pedidos));
+  if(status==='Aprovado'){
+    gerarPDF('proforma',p);
+    enviarMsgSistema(p.email,`✅ Seu pedido #${id} foi APROVADO! Fatura Proforma disponível em Meus Documentos. Efetue o pagamento.`);
+  }
+  if(status==='Rejeitado')enviarMsgSistema(p.email,`❌ Seu pedido #${id} foi REJEITADO. Entre em contato para mais informações: 975 425 542`);
+  if(status==='Devolvido')enviarMsgSistema(p.email,`↶ Seu pedido #${id} foi DEVOLVIDO para ajustes. Verifique os detalhes e submeta novamente.`);
+  carregarPedidosAdmin();
+}
+
+function confirmarPagamento(id){
+  const p=pedidos.find(p=>p.id===id);
+  p.status='Pago';
+  localStorage.setItem('pedidosFF',JSON.stringify(pedidos));
+  gerarPDF('recibo',p);
+  const data=prompt('💰 Pagamento confirmado!\n\nInforme a data para levantamento/entrega (DD/MM/AAAA):');
+  const hora=prompt('Hora (HH:MM):');
+  if(data&&hora){
+    p.agendamento={data,hora};
+    localStorage.setItem('pedidosFF',JSON.stringify(pedidos));
+    enviarMsgSistema(p.email,`✅ PAGAMENTO CONFIRMADO! Agendado para ${data} às ${hora}. Recibo de Levantamento disponível.`);
+    alert('✅ Agendamento confirmado para '+data+' às '+hora);
+  }
+  carregarPedidosAdmin();
+}
+
+function verDetalhes(id){
+  const p=pedidos.find(p=>p.id===id);
+  alert(`PEDIDO #${p.id}\n\nCliente: ${p.cliente}\nTelefone: ${p.telefone}\nTipo: ${p.tipoCompra}\nData: ${p.data}\n\nItens:\n${p.itens.map(i=>`• ${i.qtd}x ${i.produto} - ${i.subtotal.toLocaleString()} Kz`).join('\n')}\n\nTotal: ${p.total.toLocaleString()} Kz\n\nEntrega: ${p.formaEntrega}${p.endereco?`\n${p.endereco.provincia}, ${p.endereco.municipio}, ${p.endereco.bairro}`:''}\n\nStatus: ${p.status}${p.agendamento?`\nAgendado: ${p.agendamento.data} às ${p.agendamento.hora}`:''}`);
+}
+
+// CLIENTE - PEDIDOS
+function carregarPedidosCliente(){
+  if(!usuarioAtual)return;
+  const meusPedidos=pedidos.filter(p=>p.email===usuarioAtual.email);
+  document.getElementById('listaPedidosCliente').innerHTML=meusPedidos.map(p=>`
+    <div class="card">
+      <div class="card-header">
+        <h4>Pedido #${p.id}</h4>
+        <span class="badge badge-${p.status.toLowerCase()}">${p.status}</span>
+      </div>
+      <p><strong>Data:</strong> ${p.data}</p>
+      <p><strong>Itens:</strong> ${p.itens.map(i=>`${i.qtd}x ${i.produto}`).join(', ')}</p>
+      <p><strong>Total:</strong> <span style="font-size:20px;color:var(--laranja)">${p.total.toLocaleString()} Kz</span></p>
+      <p><strong>Entrega:</strong> ${p.formaEntrega}</p>
+      ${p.agendamento?`<p><strong>📅 Agendado:</strong> ${p.agendamento.data} às ${p.agendamento.hora}</p>`:''}
+      <div style="margin-top:15px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-outline btn-sm" onclick="gerarPDF('submissao',pedidos.find(x=>x.id===${p.id}))">📄 Recibo Submissão</button>
+        ${p.status!=='Submetido'?`<button class="btn btn-outline btn-sm" onclick="gerarPDF('proforma',pedidos.find(x=>x.id===${p.id}))">📄 Fatura Proforma</button>`:''}
+        ${p.status==='Pago'?`<button class="btn btn-outline btn-sm" onclick="gerarPDF('recibo',pedidos.find(x=>x.id===${p.id}))">📄 Recibo Levantamento</button>`:''}
+      </div>
+    </div>
+  `).join('')||'<p style="text-align:center;color:#999">Nenhum pedido ainda. Faça seu primeiro pedido!</p>';
+  carregarDocumentosCliente();
+  carregarDadosUsuario();
+}
+
+function carregarDocumentosCliente(){
+  const meusPedidos=pedidos.filter(p=>p.email===usuarioAtual.email);
+  document.getElementById('listaDocsCliente').innerHTML=meusPedidos.map(p=>`
+    <div class="card">
+      <h4>📁 Documentos do Pedido #${p.id}</h4>
+      <p style="color:#666;margin-bottom:15px">Total: ${p.total.toLocaleString()} Kz | Status: ${p.status}</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-outline btn-sm" onclick="gerarPDF('submissao',pedidos.find(x=>x.id===${p.id}))">⬇️ Recibo de Submissão</button>
+        ${p.status!=='Submetido'?`<button class="btn btn-outline btn-sm" onclick="gerarPDF('proforma',pedidos.find(x=>x.id===${p.id}))">⬇️ Fatura Proforma</button>`:''}
+        ${p.status==='Pago'?`<button class="btn btn-outline btn-sm" onclick="gerarPDF('recibo',pedidos.find(x=>x.id===${p.id}))">⬇️ Recibo de Levantamento</button>`:''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function carregarDadosUsuario(){
+  document.getElementById('avatarPerfil').src=usuarioAtual.foto;
+  document.getElementById('nomePerfil').textContent=usuarioAtual.nome;
+  document.getElementById('dadosUsuario').innerHTML=`
+    <p><strong>Nome:</strong> ${usuarioAtual.nome}</p>
+    <p><strong>Email:</strong> ${usuarioAtual.email}</p>
+    <p><strong>Telefone:</strong> ${usuarioAtual.tel}</p>
+    <p><strong>Tipo de Conta:</strong> ${usuarioAtual.tipo}</p>
+  `;
+}
+
+// PDF
+function gerarPDF(tipo,pedido){
+  const {jsPDF}=window.jspdf;const doc=new jsPDF();
+  doc.setFontSize(22);doc.setTextColor(27,94,32);doc.text('FAZENDA FILOMENA',20,20);
+  doc.setFontSize(9);doc.setTextColor(100);
+  doc.text('Rua da Burgalheira, Bairro Panguila, Bengo - Angola',20,28);
+  doc.text('Call Center: 975 425 542 | comercial@fazendafilomena.co.ao',20,34);
+  doc.setDrawColor(27,94,32);doc.setLineWidth(0.5);doc.line(20,38,190,38);
+  
+  if(tipo==='submissao'){
+    doc.setFontSize(16);doc.setTextColor(0);doc.text('RECIBO DE SUBMISSÃO DE PEDIDO',20,50);
+    doc.setFontSize(10);
+    doc.text(`Nº Pedido: #${pedido.id}`,20,62);
+    doc.text(`Data/Hora: ${pedido.data}`,20,70);
+    doc.text(`Cliente: ${pedido.cliente}`,20,78);
+    doc.text(`Telefone: ${pedido.telefone}`,20,86);
+    doc.text(`Tipo: ${pedido.tipoCompra}`,20,94);
+    doc.setFontSize(11);doc.setTextColor(27,94,32);doc.text('ITENS SOLICITADOS:',20,106);
+    doc.setFontSize(10);doc.setTextColor(0);
+    let y=114;pedido.itens.forEach(i=>{
+      doc.text(`• ${i.qtd}x ${i.produto}`,25,y);
+      doc.text(`${i.preco.toLocaleString()} Kz/un = ${i.subtotal.toLocaleString()} Kz`,130,y);
+      y+=8;
+    });
+    doc.setFontSize(14);doc.setTextColor(255,111,0);doc.text(`TOTAL: ${pedido.total.toLocaleString()} Kz`,20,y+5);
+    doc.setFontSize(10);doc.setTextColor(0);
+    doc.text(`Forma de Recebimento: ${pedido.formaEntrega}`,20,y+18);
+    if(pedido.endereco){
+      doc.text(`Endereço: ${pedido.endereco.provincia}, ${pedido.endereco.municipio}, ${pedido.endereco.bairro}`,20,y+26);
+      if(pedido.endereco.referencia)doc.text(`Ref: ${pedido.endereco.referencia}`,20,y+34);
+    }
+    doc.setFillColor(255,243,224);doc.rect(20,y+45,170,20,'F');
+    doc.setTextColor(230,81,0);doc.text('Status: AGUARDANDO APROVAÇÃO DO ADMINISTRATIVO',25,y+57);
+  }
+  
+  if(tipo==='proforma'){
+    doc.setFontSize(16);doc.setTextColor(0);doc.text('FATURA PROFORMA',20,50);
+    doc.setFontSize(10);
+    doc.text(`Nº Pedido: #${pedido.id}`,20,62);
+    doc.text(`Cliente: ${pedido.cliente} | ${pedido.telefone}`,20,70);
+    doc.setFontSize(12);doc.setTextColor(27,94,32);doc.text('DADOS PARA PAGAMENTO MULTICAIXA',20,84);
+    doc.setFillColor(255,235,238);doc.rect(20,90,170,35,'F');
+    doc.setFontSize(14);doc.setTextColor(211,47);
+    doc.text('Entidade: 00525',30,102);
+    doc.text('Referência: 942 714 052',30,112);
+    doc.setFontSize(10);doc.setTextColor(0);
+    doc.text('INSTRUÇÕES ATM / MULTICAIXA EXPRESS:',20,135);
+    doc.text('1. Selecione: Pagamentos',25,143);
+    doc.text('2. Selecione: Pagamentos por Referência',25,151);
+    doc.text('3. Digite Entidade: 00525',25,159);
+    doc.text('4. Digite Referência: 942714052',25,167);
+    doc.text('5. Insira o valor, confirme e aguarde comprovativo',25,175);
+    doc.setFontSize(16);doc.setTextColor(255,111,0);
+    doc.text(`VALOR A PAGAR: ${pedido.total.toLocaleString()} Kz`,20,190);
+    doc.setFontSize(9);doc.setTextColor(100);
+    doc.text('Após efetuar o pagamento, envie o comprovativo via Chat ou WhatsApp 975 425 542',20,202);
+    doc.text('A fatura proforma é válida por 48 horas',20,210);
+  }
+  
+  if(tipo==='recibo'){
+    doc.setFontSize(16);doc.setTextColor(0);doc.text('RECIBO DE LEVANTAMENTO / RECEBIMENTO',20,50);
+    doc.setFontSize(10);
+    doc.text(`Nº Pedido: #${pedido.id} - PAGAMENTO CONFIRMADO ✓`,20,62);
+    doc.text(`Cliente: ${pedido.cliente} | ${pedido.telefone}`,20,70);
+    doc.setFontSize(11);doc.setTextColor(27,94,32);doc.text('PRODUTOS LIBERADOS PARA ENTREGA:',20,84);
+    doc.setFontSize(10);doc.setTextColor(0);
+    let y=92;pedido.itens.forEach(i=>{
+      doc.text(`✓ ${i.qtd}x ${i.produto} - ${i.subtotal.toLocaleString()} Kz`,25,y);y+=8;
+    });
+    doc.setFontSize(12);doc.setTextColor(27,94,32);doc.text(`TOTAL PAGO: ${pedido.total.toLocaleString()} Kz`,20,y+8);
+    doc.setFontSize(10);doc.setTextColor(0);
+    doc.text(`Forma: ${pedido.formaEntrega}`,20,y+20);
+    if(pedido.agendamento){
+      doc.setFillColor(227,242,253);doc.rect(20,y+28,170,15,'F');
+      doc.setTextColor(25,118,210);
+      doc.text(`📅 AGENDADO PARA: ${pedido.agendamento.data} às ${pedido.agendamento.hora}`,25,y+37);
+    }
+    doc.setFontSize(9);doc.setTextColor(100);
+    doc.text('Apresente este recibo no levantamento dos produtos na fábrica',20,y+50);
+    doc.text('ou ao entregador no momento da entrega domicílio',20,y+58);
+  }
+  
+  doc.setFontSize(8);doc.setTextColor(150);
+  doc.text('Documento gerado automaticamente pelo Sistema Fazenda Filomena',20,280);
+  doc.text('Este documento não necessita de assinatura | www.fazendafilomena.co.ao',20,285);
+  doc.save(`${tipo}_pedido_${pedido.id}.pdf`);
+}
+
+// CHAT
+function carregarListaChat(){
+  const clientesUnicos=[...new Set(mensagens.map(m=>m.email).filter(e=>e&&e!=='admin@fazenda.com'))];
+  document.getElementById('listaChatUsers').innerHTML=clientesUnicos.map(email=>{
+    const user=usuarios[email];
+    const ultMsg=mensagens.filter(m=>m.email===email).slice(-1)[0];
+    return `
+      <div class="chat-user" onclick="selecionarChat('${email}')">
+        <img src="${user?.foto||'photo8383962120950761595.jpeg'}" alt="${user?.nome}">
+        <div style="flex:1">
+          <strong style="font-size:14px">${user?.nome||email}</strong><br>
+          <small style="color:#666">${ultMsg?ultMsg.texto.substring(0,30)+'...':''}</small>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function selecionarChat(email){
+  chatAtual=email;
+  const user=usuarios[email];
+  document.getElementById('nomeClienteChat').textContent=user?.nome||email;
+  document.getElementById('emailClienteChat').textContent=email;
+  document.querySelector('#chatHeaderAdmin img').src=user?.foto||'photo8383962120950761595.jpeg';
+  carregarChat();
+}
+
+function enviarMsg(origem){
+  const input=document.getElementById(origem==='cliente'?'msgCliente':'msgAdmin');
+  if(!input.value.trim())return;
+  const msg={
+    de:origem,
+    nome:origem==='cliente'?usuarioAtual.nome:'Administrador',
+    email:origem==='cliente'?usuarioAtual.email:chatAtual,
+    foto:origem==='cliente'?usuarioAtual.foto:usuarios['admin@fazenda.com'].foto,
+    texto:input.value,
+    hora:new Date().toLocaleTimeString('pt-AO',{hour:'2-digit',minute:'2-digit'}),
+    tipo:'texto'
+  };
+  mensagens.push(msg);
+  localStorage.setItem('mensagensFF',JSON.stringify(mensagens));
+  input.value='';
+  carregarChat();
+}
+
+function enviarAnexo(origem,event){
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const msg={
+      de:origem,
+      nome:origem==='cliente'?usuarioAtual.nome:'Administrador',
+      email:origem==='cliente'?usuarioAtual.email:chatAtual,
+      foto:origem==='cliente'?usuarioAtual.foto:usuarios['admin@fazenda.com'].foto,
+      texto:`📎 ${file.name}`,
+      arquivo:e.target.result,
+      tipo:file.type.startsWith('image')?'imagem':'documento',
+      hora:new Date().toLocaleTimeString('pt-AO',{hour:'2-digit',minute:'2-digit'})
+    };
+    mensagens.push(msg);
+    localStorage.setItem('mensagensFF',JSON.stringify(mensagens));
+    carregarChat();
+    event.target.value='';
+  }
+  reader.readAsDataURL(file);
+}
+
+function enviarMsgSistema(email,texto){
+  mensagens.push({
+    de:'admin',
+    nome:'Sistema Fazenda Filomena',
+    email:email,
+    foto:'photo8383962120950761595.jpeg',
+    texto:texto,
+    hora:new Date().toLocaleTimeString('pt-AO',{hour:'2-digit',minute:'2-digit'}),
+    tipo:'texto'
+  });
+  localStorage.setItem('mensagensFF',JSON.stringify(mensagens));
+}
+
+function carregarChat(){
+  const containerCliente=document.getElementById('chatCliente');
+  const containerAdmin=document.getElementById('chatAdmin');
+  if(!containerCliente&&!containerAdmin)return;
+  
+  const msgsCliente=mensagens.filter(m=>usuarioAtual&&m.email===usuarioAtual.email||m.de==='admin'&&usuarioAtual);
+  const msgsAdmin=chatAtual?mensagens.filter(m=>m.email===chatAtual||m.de==='admin'&&m.email===chatAtual):[];
+  
+  const renderMsg=(m)=>{
+    const isArquivo=m.arquivo;
+    const conteudo=isArquivo?
+      (m.tipo==='imagem'?`<img src="${m.arquivo}" style="max-width:200px;border-radius:8px;margin-top:8px">`:`<a href="${m.arquivo}" download="${m.texto.replace('📎 ','')}" style="color:inherit">⬇️ Baixar ${m.texto.replace('📎 ','')}</a>`)
+      :m.texto;
+    return `
+    <div class="message ${m.de==='cliente'&&usuarioAtual&&m.email===usuarioAtual.email||m.de==='admin'&&!usuarioAtual?'sent':'received'}">
+      <img src="${m.foto}" alt="${m.nome}">
+      <div class="message-bubble">
+        <strong style="font-size:12px">${m.nome}</strong><br>
+        ${conteudo}
+        <div style="font-size:11px;opacity:.7;margin-top:4px">${m.hora}</div>
+      </div>
+    </div>`;
+  };
+  
+  if(containerCliente)containerCliente.innerHTML=msgsCliente.map(renderMsg).join('');
+  if(containerAdmin)containerAdmin.innerHTML=msgsAdmin.map(renderMsg).join('');
+  
+  if(containerCliente)containerCliente.scrollTop=containerCliente.scrollHeight;
+  if(containerAdmin)containerAdmin.scrollTop=containerAdmin.scrollHeight;
+  
+  carregarListaChat();
+}
+
+// RELATÓRIOS
+function carregarRelatorios(){
+  const totalVendas=pedidos.filter(p=>p.status==='Pago').reduce((s,p)=>s+p.total,0);
+  const totalPedidos=pedidos.length;
+  const pendentes=pedidos.filter(p=>p.status==='Submetido').length;
+  const aprovados=pedidos.filter(p=>p.status==='Aprovado').length;
+  
+  document.getElementById('cardsRelatorio').innerHTML=`
+    <div class="card" style="background:linear-gradient(135deg,#E8F5E9,#C8E6C9)">
+      <h3 style="color:var(--verde)">💰 Total Vendas</h3>
+      <p style="font-size:32px;font-weight:700;color:var(--verde)">${totalVendas.toLocaleString()} Kz</p>
+      <small>Pedidos pagos</small>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg,#E3F2FD,#BBDEFB)">
+      <h3 style="color:var(--azul)">📦 Total Pedidos</h3>
+      <p style="font-size:32px;font-weight:700;color:var(--azul)">${totalPedidos}</p>
+      <small>Todos os pedidos</small>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2)">
+      <h3 style="color:var(--laranja)">⏳ Pendentes</h3>
+      <p style="font-size:32px;font-weight:700;color:var(--laranja)">${pendentes}</p>
+      <small>Aguardando aprovação</small>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7)">
+      <h3 style="color:#7B1FA2">✅ Aprovados</h3>
+      <p style="font-size:32px;font-weight:700;color:#7B1FA2">${aprovados}</p>
+      <small>Aguardando pagamento</small>
+    </div>
+  `;
+}
+
+// ABAS
+function mostrarAbaPerfil(aba){
+  document.querySelectorAll('[id^=aba-]').forEach(a=>a.classList.add('hidden'));
+  document.getElementById('aba-'+aba).classList.remove('hidden');
+  document.querySelectorAll('.sidebar a').forEach(a=>a.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function mostrarAbaAdmin(aba){
+  document.querySelectorAll('[id^=admin-]').forEach(a=>a.classList.add('hidden'));
+  document.getElementById('admin-'+aba).classList.remove('hidden');
+  document.querySelectorAll('.sidebar a').forEach(a=>a.classList.remove('active'));
+  event.target.classList.add('active');
+  if(aba==='relatorios')carregarRelatorios();
+  if(aba==='chat')carregarListaChat();
+}
+</script>
+</body>
+</html>
