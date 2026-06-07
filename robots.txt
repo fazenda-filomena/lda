@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://fazenda-filomena.github.io/lda/sitemap.xml
+
+# Bloquear arquivos sensíveis
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*.pdf$
+
+# Permitir imagens para SEO
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+
+# Crawl-delay para bots
+Crawl-delay: 1
