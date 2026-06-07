@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Página Principal -->
+  <url>
+    <loc>https://fazenda-filomena.github.io/lda/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://fazenda-filomena.github.io/lda/photo22123909026085439.jpeg</image:loc>
+      <image:title>Fazenda Filomena - Ração 50KG 100% Natural</image:title>
+      <image:caption>Saco de ração para galinhas poedeiras - Produção biológica - Bengo, Angola</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://fazenda-filomena.github.io/lda/photo8383962120950761595.jpeg</image:loc>
+      <image:title>Caixas de Ovos Dona Filomena Premium</image:title>
+      <image:caption>Caixa com 12 cartões - 360 ovos - 20.000 Kz - Produção 100% Nacional</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Sobre Nós -->
+  <url>
+    <loc>https://fazenda-filomena.github.io/lda/#sobre</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Serviços -->
+  <url>
+    <loc>https://fazenda-filomena.github.io/lda/#servicos</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Taxas e Preços -->
+  <url>
+    <loc>https://fazenda-filomena.github.io/lda/#taxas</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Legislação -->
+  <url>
+    <loc>https://fazenda-filomena.github.io/lda/#legislacao</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Comunicação -->
+  <url>
+    <loc>https://fazenda-filomena.github.io/lda/#comunicacao</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Auditoria -->
+  <url>
+    <loc>https://fazenda-filomena.github.io/lda/#auditoria</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Imprensa -->
+  <url>
+    <loc>https://fazenda-filomena.github.io/lda/#imprensa</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
